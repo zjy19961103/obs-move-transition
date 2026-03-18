@@ -238,7 +238,7 @@ double parse_text(long long format_type, const char *format, const char *text)
 {
 	double value = 0.0;
 	if (format_type == MOVE_VALUE_FORMAT_FLOAT) {
-		char *pos = strstr(format, "%");
+		const char *pos = strstr(format, "%");
 		while (pos && (*(pos + 1) < '0' || *(pos + 1) > '9') && *(pos + 1) != '.')
 			pos = strstr(pos + 1, "%");
 		size_t len = pos ? (size_t)(pos - format) : 0;
@@ -249,7 +249,7 @@ double parse_text(long long format_type, const char *format, const char *text)
 			sscanf(text, format, &value);
 		}
 	} else if (format_type == MOVE_VALUE_FORMAT_TIME) {
-		char *pos;
+		const char *pos;
 		unsigned int sec = 0;
 		unsigned int min = 0;
 		unsigned int hour = 0;

@@ -1903,7 +1903,7 @@ struct move_item *match_item_name_part(struct move_info *move, obs_sceneitem_t *
 
 		if (len_a > len_b) {
 			if (move->last_word_match) {
-				char *last_space = strrchr(name_b, ' ');
+				const char *last_space = strrchr(name_b, ' ');
 				if (last_space && last_space > name_b) {
 					len_b = last_space - name_b;
 				}
@@ -1928,7 +1928,7 @@ struct move_item *match_item_name_part(struct move_info *move, obs_sceneitem_t *
 
 		} else {
 			if (move->last_word_match) {
-				char *last_space = strrchr(name_a, ' ');
+				const char *last_space = strrchr(name_a, ' ');
 				if (last_space && last_space > name_a) {
 					len_a = last_space - name_a;
 				}
