@@ -1756,6 +1756,13 @@ void move_action_tick(void *data, float seconds)
 	}
 }
 
+void move_action_render(void *data, gs_effect_t *effect)
+{
+	UNUSED_PARAMETER(effect);
+	struct move_action_info *move_action = data;
+	obs_source_skip_video_filter(move_action->move_filter.source);
+}
+
 struct obs_source_info move_action_filter = {
 	.id = MOVE_ACTION_FILTER_ID,
 	.type = OBS_SOURCE_TYPE_FILTER,
@@ -1768,6 +1775,7 @@ struct obs_source_info move_action_filter = {
 	.update = move_action_update,
 	.load = move_action_update,
 	.video_tick = move_action_tick,
+	.video_render = move_action_render,
 	.activate = move_filter_activate,
 	.deactivate = move_filter_deactivate,
 	.show = move_filter_show,
